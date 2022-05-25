@@ -50,6 +50,12 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
+//create docker image with command ./gradlew bootBuildImage
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootBuildImage>("bootBuildImage"){
+	imageName = "nachoemf/mmv2-${project.name}:${project.version}"
+	pullPolicy = org.springframework.boot.buildpack.platform.build.PullPolicy.IF_NOT_PRESENT
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
